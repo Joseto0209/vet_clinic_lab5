@@ -13,12 +13,28 @@
   </div>
 </div>
 
-<h3 class="h5 mb-3">Assigned Appointments</h3>
-<div class="list-group">
-  <% @vet.appointments.each do |appointment| %>
-    <%= link_to "Appointment on #{appointment.date.strftime('%B %d, %Y')} with #{appointment.pet.name}", appointment_path(appointment), class: "list-group-item list-group-item-action" %>
+<h3 class="h5 mb-3">Upcoming Appointments</h3>
+<div class="list-group mb-4">
+  <% @upcoming_appointments.each do |appointment| %>
+    <%= link_to appointment_path(appointment), class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center" do %>
+      <span>Appointment on <%= appointment.date.strftime('%B %d, %Y') %> with <%= appointment.pet.name %></span>
+      <span class="badge bg-primary rounded-pill"><%= appointment.status.titleize %></span>
+    <% end %>
   <% end %>
-  <% if @vet.appointments.empty? %>
-    <p class="text-muted mt-2">This veterinarian has no scheduled appointments.</p>
+  <% if @upcoming_appointments.empty? %>
+    <p class="text-muted mt-2">This veterinarian has no upcoming appointments.</p>
+  <% end %>
+</div>
+
+<h3 class="h5 mb-3">Past Appointments</h3>
+<div class="list-group">
+  <% @vet.appointments.past.includes(:pet).each do |appointment| %>
+    <%= link_to appointment_path(appointment), class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center" do %>
+      <span>Appointment on <%= appointment.date.strftime('%B %d, %Y') %> with <%= appointment.pet.name %></span>
+      <span class="badge bg-secondary rounded-pill"><%= appointment.status.titleize %></span>
+    <% end %>
+  <% end %>
+  <% if @vet.appointments.past.empty? %>
+    <p class="text-muted mt-2">This veterinarian has no past appointments.</p>
   <% end %>
 </div>

@@ -1,17 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  appointment_id: 1
-  name: MyString
-  medication: MyString
-  dosage: MyString
-  notes: MyText
+  appointment: one
+  name: Blood Test
+  medication: N/A
+  dosage: N/A
+  notes: Standard blood panel
   administered_at: 2026-04-09 14:49:55
 
 two:
-  appointment_id: 1
-  name: MyString
-  medication: MyString
-  dosage: MyString
-  notes: MyText
-  administered_at: 2026-04-09 14:49:55
+  appointment: two
+  name: Rabies Vaccine
+  medication: Rabies Vaccine
+  dosage: 1 ml
+  notes: Annual vaccination
+  administered_at: 2026-04-10 10:30:00

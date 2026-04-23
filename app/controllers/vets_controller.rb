@@ -5,5 +5,6 @@ class VetsController < ApplicationController
 
   def show
     @vet = Vet.find(params[:id])
+    @upcoming_appointments = @vet.appointments.upcoming.includes(:pet)
   end
 end
